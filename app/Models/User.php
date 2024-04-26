@@ -47,8 +47,8 @@ class User extends Authenticatable
     protected $table = 'transaction_types';
     protected $guarded = [];
 
-    public function transaction() {
-        return $this->hasMany(Transaction::class, 'transaction_type_id');
+    public function accounts() {
+        return $this->hasMany(Account::class, 'account_id');
     }
 
     public function documentType() {

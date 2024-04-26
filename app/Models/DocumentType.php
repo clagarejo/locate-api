@@ -12,8 +12,8 @@ class DocumentType extends Model
     protected $table = 'document_types';
     protected $guarded = [];
 
-    public function user() {
-        return $this->hasMany(User::class, 'transaction_id');
+    public function users() {
+        return $this->hasMany(User::class, 'user_id');
     }
 
 }

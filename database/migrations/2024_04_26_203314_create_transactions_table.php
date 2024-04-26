@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('transaction_type_id')->unsigned();
+            $table->bigInteger('transaction_type_id')->unsigned();
             $table->foreign('transaction_type_id')->references('id')->on('transaction_types')->onUpdate('restrict')->onDelete('restrict');
+            $table->bigInteger('account_id')->unsigned();
+            $table->foreign('account_id')->references('id')->on('accounts')->onUpdate('restrict')->onDelete('restrict');
             $table->double('amount');
             $table->timestamps();
+            
 
         });
     }

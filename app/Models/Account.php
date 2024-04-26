@@ -13,10 +13,10 @@ class Account extends Model
     protected $guarded = [];
 
     public function user() {
-        return $this->belongsTo(User::class, 'accoun_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function transaction() {
+    public function transactions() {
         return $this->hasMany(Transaction::class, 'transaction_id');
     }
 

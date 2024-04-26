@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->double('total_amount');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('restrict')->onDelete('restrict');
             $table->boolean('is_active');
             $table->timestamps();
         });

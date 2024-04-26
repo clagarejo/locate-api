@@ -12,8 +12,8 @@ class TransactionType extends Model
     protected $table = 'transaction_types';
     protected $guarded = [];
 
-    public function transaction() {
-        return $this->hasMany(Transaction::class, 'transaction_type_id');
+    public function transactions() {
+        return $this->hasMany(Transaction::class, 'transaction_id');
     }
 
 }
