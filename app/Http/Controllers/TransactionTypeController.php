@@ -12,10 +12,10 @@ class TransactionTypeController extends Controller
      */
     public function index()
     {
-        // Obtener todos los usuarios activos de la base de datos
-        $transaction_type = TransactionType::get();
+        // Obtener todos los tipos de transacciones excepto el primero de la base de datos
+        $transaction_type = TransactionType::where('id', '<>', 1)->get();
 
-        // Pasar los usuarios activos a la vista
+        // Pasar los tipos de transacciones a la vista
         return response()->json($transaction_type);
     }
 

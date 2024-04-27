@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AccountUpdate;
 use App\Http\Controllers\DocumentTypeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionTypeController;
@@ -22,10 +23,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'api'], function ($router) {
     Route::apiResource('users', UserController::class);
     Route::apiResource('accounts', AccountController::class);
+    Route::apiResource('account_update', AccountUpdate::class);
     Route::apiResource('transactions', TransactionController::class);
     Route::apiResource('transactions_type', TransactionTypeController::class);
     Route::apiResource('documents', DocumentTypeController::class);
 });
+
 
 
 

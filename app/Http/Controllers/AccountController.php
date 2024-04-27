@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -90,7 +91,30 @@ class AccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Obtener el valor que llega en la solicitud
+        $amountToUpdate = $request->amount;
+        $typeTransaction = $request->typeTransaction;
+
+        // Obtener la cuenta según el ID
+        $account = Account::findOrFail($id);
+
+        // Actualizar el campo total_amount según el tipo de movimiento
+        if ($typeTransaction == 2) {
+            // Sumar el valor existente con el valor que llega
+            $account->total_amount += $amountToUpdate;
+        } elseif ($typeTransaction == 3) {
+            // Restar el valor existente con el valor que llega
+            $account->total_amount -= $amountToUpdate;
+        }
+
+        // Guardar los cambios en la base de datos
+        $account->save();
+
+        // Actualizar el campo transaction_type_id en la tabla transactions
+        Transaction::where('account_id', $id)->update(['transaction_type_id' => $typeTransaction]);
+
+        // Devolver una respuesta exitosa
+        return response()->json(['message' => 'Total amount actualizado correctamente y campo transaction_type_id actualizado en la tabla transactions'], 200);
     }
 
     /**
