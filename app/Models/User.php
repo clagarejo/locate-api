@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
     ];
 
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -44,15 +45,21 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    protected $table = 'transaction_types';
-    protected $guarded = [];
+    protected $table = 'users';
+    protected $guarded = ['password'];
 
-    public function accounts() {
+    public function accounts()
+    {
         return $this->hasMany(Account::class, 'account_id');
     }
 
-    public function documentType() {
+    public function documentType()
+    {
         return $this->belongsTo(DocumentType::class, 'document_type_id');
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

@@ -12,7 +12,11 @@ class TransactionTypeController extends Controller
      */
     public function index()
     {
-        //
+        // Obtener todos los usuarios activos de la base de datos
+        $transaction_type = TransactionType::get();
+
+        // Pasar los usuarios activos a la vista
+        return response()->json($transaction_type);
     }
 
     /**

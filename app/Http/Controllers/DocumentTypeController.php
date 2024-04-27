@@ -12,7 +12,11 @@ class DocumentTypeController extends Controller
      */
     public function index()
     {
-        //
+        // Obtener todos los tipos de documentos
+        $documentTypes = DocumentType::all();
+
+        // Devolver los tipos de documentos como respuesta JSON
+        return response()->json($documentTypes);
     }
 
     /**
