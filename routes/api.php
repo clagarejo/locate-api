@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'api'], function ($router) {
     Route::apiResource('users', UserController::class);
     Route::apiResource('accounts', AccountController::class);
-    Route::apiResource('account_update', AccountUpdate::class);
     Route::apiResource('transactions', TransactionController::class);
     Route::apiResource('transactions_type', TransactionTypeController::class);
     Route::apiResource('documents', DocumentTypeController::class);
