@@ -15,10 +15,8 @@ class AccountController extends Controller
 
     public function index()
     {
-        $accounts = Account::select('accounts.*', 'users.name as user_name', 'transaction_types.name as transaction_type_name')
+        $accounts = Account::select('accounts.*', 'users.name as user_name')
             ->join('users', 'accounts.user_id', '=', 'users.id')
-            ->leftJoin('transactions', 'accounts.id', '=', 'transactions.account_id')
-            ->leftJoin('transaction_types', 'transactions.transaction_type_id', '=', 'transaction_types.id')
             ->where('accounts.is_active', 1)
             ->get();
 
@@ -125,7 +123,6 @@ class AccountController extends Controller
 
     public function destroy(string $id)
     {
-        // dd($id);
         // Buscar el usuario por su ID
         $account = Account::findOrFail($id);
 
