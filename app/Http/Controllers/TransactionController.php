@@ -37,26 +37,16 @@ class TransactionController extends Controller
      * Display the specified resource.
      */
 
-    public function show(Transaction $transaction)
+    public function show(int $accountId)
     {
-        $transactionData = DB::table('transactions')
-            ->join('accounts', 'transactions.account_id', '=', 'accounts.id')
-            ->join('users', 'accounts.user_id', '=', 'users.id')
-            ->join('transaction_types', 'transactions.transaction_type_id', '=', 'transaction_types.id')
-            ->select(
-                'transactions.*',
-                'accounts.*',
-                'users.*',
-                'transaction_types.name as transaction_type_name'
-            )
-            ->where('transactions.id', $transaction->id)
-            ->first();
-
-        if ($transactionData) {
-            return response()->json(['transaction' => $transactionData], 200);
+        $account = Account::find($accountId)->load(['user', 'transactions', 'transactions.transactionType']);
+        
+        if ($account) {
+            return response()->json(['transaction' => $account], 200);
         } else {
             return response()->json(['message' => 'No se encontró la transacción'], 404);
         }
+
     }
 
 

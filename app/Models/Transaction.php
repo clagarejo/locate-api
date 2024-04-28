@@ -14,12 +14,12 @@ class Transaction extends Model
 
     public function transactionType()
     {
-        return $this->belongsTo(TransactionType::class, 'transaction_type_id');
+        return $this->belongsTo(TransactionType::class);
     }
 
     public function account()
     {
-        return $this->belongsTo(Account::class, 'account_id');
+        return $this->belongsTo(Account::class);
     }
 
     public function user()

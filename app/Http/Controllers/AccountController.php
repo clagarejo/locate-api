@@ -75,7 +75,9 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        //
+        dd($account);
+        $account = Account::find($account);
+        dd($account);
     }
 
     /**
@@ -111,7 +113,7 @@ class AccountController extends Controller
         $account->save();
 
         // Actualizar el campo transaction_type_id en la tabla transactions
-        Transaction::where('account_id', $id)->update(['transaction_type_id' => $typeTransaction]);
+        Transaction::insert(['account_id' => $id, 'transaction_type_id' => $typeTransaction, 'amount' => $amountToUpdate]);
 
         // Devolver una respuesta exitosa
         return response()->json(['message' => 'Total amount actualizado correctamente y campo transaction_type_id actualizado en la tabla transactions'], 200);

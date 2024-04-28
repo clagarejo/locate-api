@@ -50,12 +50,12 @@ class User extends Authenticatable
 
     public function accounts()
     {
-        return $this->hasMany(Account::class, 'account_id');
+        return $this->hasMany(Account::class);
     }
 
     public function documentType()
     {
-        return $this->belongsTo(DocumentType::class, 'document_type_id');
+        return $this->belongsTo(DocumentType::class);
     }
 
     public function transactions()
