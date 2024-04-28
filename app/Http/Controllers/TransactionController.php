@@ -39,14 +39,16 @@ class TransactionController extends Controller
 
     public function show(int $accountId)
     {
-        $account = Account::find($accountId)->load(['user', 'transactions', 'transactions.transactionType']);
-        
+        $account = Account::with(['user', 'transactions', 'transactions.transactionType'])
+            ->where('is_active', 1)
+            ->find($accountId);
+
+
         if ($account) {
             return response()->json(['transaction' => $account], 200);
         } else {
             return response()->json(['message' => 'No se encontró la transacción'], 404);
         }
-
     }
 
 
@@ -64,9 +66,9 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-       //
+        //
     }
-    
+
 
     /**
      * Remove the specified resource from storage.

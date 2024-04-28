@@ -75,9 +75,7 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        dd($account);
-        $account = Account::find($account);
-        dd($account);
+        //
     }
 
     /**
@@ -104,9 +102,11 @@ class AccountController extends Controller
         if ($typeTransaction == 2) {
             // Sumar el valor existente con el valor que llega
             $account->total_amount += $amountToUpdate;
+            $message = "La consignación ha sido realizada";
         } elseif ($typeTransaction == 3) {
             // Restar el valor existente con el valor que llega
             $account->total_amount -= $amountToUpdate;
+            $message = "La consignación ha sido realizada";
         }
 
         // Guardar los cambios en la base de datos
@@ -116,7 +116,7 @@ class AccountController extends Controller
         Transaction::insert(['account_id' => $id, 'transaction_type_id' => $typeTransaction, 'amount' => $amountToUpdate]);
 
         // Devolver una respuesta exitosa
-        return response()->json(['message' => 'Total amount actualizado correctamente y campo transaction_type_id actualizado en la tabla transactions'], 200);
+        return response()->json(['message' => $message], 200);
     }
 
     /**
@@ -125,6 +125,7 @@ class AccountController extends Controller
 
     public function destroy(string $id)
     {
+        // dd($id);
         // Buscar el usuario por su ID
         $account = Account::findOrFail($id);
 
