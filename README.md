@@ -32,11 +32,3 @@
 Para ejecutar las funcionalidades de forma satisfactoria, es necesario ejecutar también el frontend. Puedes encontrar las instrucciones para ejecutar el frontend en el siguiente enlace: https://github.com/clagarejo/test-front
 
 
-En este repositorio se encuentra el codigo con respecto al Backend para la prueba tecnica de Locatel
-
-## los pasos para ejecutar el proyecto son los siguientes
-  - Descargar o clonar el repositorio
-  - Debes tener instalado un gestor de base datos (Laragon, xammp...),
-  - Ejecuta el comando componser install para instalar las dependencias
-  - Por ultimo ejecuta el codigo php artisan serve para poner a correr el servidor
-  - Para poder ejecutar las funcionalides con satisfaccion debes ejecutar el frontend, en el siguiente link encontraras los pasos para ejecutarlo: https://github.com/clagarejo/test-front
