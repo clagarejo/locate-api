@@ -118,7 +118,6 @@ class UserController extends Controller
     
     public function destroy(string $id)
     {
-        dd($id);
         // Buscar el usuario por su ID
         $user = User::findOrFail($id);
 
